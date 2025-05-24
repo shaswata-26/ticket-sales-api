@@ -1,0 +1,7 @@
+-- CreateTable
+CREATE TABLE "Event" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT DEFAULT 1,
+    "totalSeats" INTEGER NOT NULL,
+    "seatsSold" INTEGER NOT NULL,
+    "updatedAt" DATETIME NOT NULL
+);

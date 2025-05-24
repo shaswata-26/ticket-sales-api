@@ -1,0 +1,33 @@
+{
+  "name": "ticket-sales-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaswata-26/ticket-sales-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaswata-26/ticket-sales-api/issues"
+  },
+  "homepage": "https://github.com/shaswata-26/ticket-sales-api#readme",
+  "dependencies": {
+    "@prisma/client": "^6.8.2",
+    "express": "^5.1.0",
+    "sqlite3": "^5.1.7",
+    "zod": "^3.25.28"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.15.21",
+    "prisma": "^6.8.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
