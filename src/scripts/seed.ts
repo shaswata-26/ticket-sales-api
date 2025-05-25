@@ -1,19 +1,29 @@
-import { PrismaClient } from "../generated/prisma";
+import { PrismaClient } from '../generated/prisma'
 
-// src/scripts/seed.ts
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 async function main() {
-  await prisma.event.upsert({
-    where: { id: 1 },
-    update: {},
-    create: {
-      id: 1,
-      totalSeats: 5000,
-      seatsSold: 0
-    }
-  });
+  console.log('⏳ Seeding database...')
 
-  console.log('✅ Seeded event');
+  // Clean existing data
+  await prisma.purchase.deleteMany()
+  await prisma.event.deleteMany()
+
+  // Insert a default event
+  await prisma.event.create({
+    data: {
+      id: 1,           // since @default(1)
+      totalSeats: 100,
+      seatsSold: 0,
+    },
+  })
+
+  console.log('✅ Seeding complete.')
 }
-main();
+
+main()
+  .catch((e) => {
+    console.error('❌ Seeding failed:', e)
+    process.exit(1)
+  })
+  .finally(() => prisma.$disconnect())

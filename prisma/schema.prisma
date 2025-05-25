@@ -3,26 +3,28 @@
 
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Event {
-  id         Int      @id @default(1)
+  id         Int       @id @default(1)
   totalSeats Int
   seatsSold  Int
-  updatedAt  DateTime @updatedAt
+  purchases  Purchase[]
 }
 
 model Purchase {
-  id             Int      @id @default(autoincrement())
+  id             Int    @id @default(autoincrement())
   quantity       Int
-  idempotencyKey String   @unique
-  createdAt      DateTime @default(now())
+  idempotencyKey String @unique
+  eventId        Int    @default(1)
+  event          Event  @relation(fields: [eventId], references: [id])
 }
